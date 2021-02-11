@@ -252,6 +252,11 @@ where
         }
     }
 
+    /// Get App spec
+    pub fn get_spec(self) -> Arc<RwLock<DefaultApiRaw>> {
+        self.spec.clone()
+    }
+
     /// Mounts the specification for all operations and definitions
     /// recorded by the wrapper and serves them in the given path
     /// as a JSON.
