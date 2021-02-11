@@ -253,8 +253,8 @@ where
     }
 
     /// Get App spec
-    pub fn get_spec(self) -> Arc<RwLock<DefaultApiRaw>> {
-        self.spec.clone()
+    pub fn get_spec(&self) -> &RwLock<DefaultApiRaw> {
+        self.spec.as_ref().clone()
     }
 
     /// Mounts the specification for all operations and definitions
