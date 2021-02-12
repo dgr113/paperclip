@@ -285,8 +285,8 @@ where
     }
 
     /// Builds and returns the `actix_web::App` and its spec
-    pub fn build_with_spec(self) -> (actix_web::App<T, B>, &RwLock<DefaultApiRaw>) {
-        (self.inner.expect("missing app?"), self.spec.as_ref().clone())
+    pub fn build_with_spec(self) -> (actix_web::App<T, B>, DefaultApiRaw) {
+        (self.inner.expect("missing app?"), self.spec.read().clone())
     }
 
     /// Updates the underlying spec with definitions and operations from the given factory.
