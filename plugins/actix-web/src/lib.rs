@@ -252,11 +252,6 @@ where
         }
     }
 
-    /// Get App spec
-    pub fn get_spec(&self) -> &RwLock<DefaultApiRaw> {
-        self.spec.as_ref().clone()
-    }
-
     /// Mounts the specification for all operations and definitions
     /// recorded by the wrapper and serves them in the given path
     /// as a JSON.
@@ -287,6 +282,11 @@ where
     /// Builds and returns the `actix_web::App`.
     pub fn build(self) -> actix_web::App<T, B> {
         self.inner.expect("missing app?")
+    }
+
+    /// Builds and returns the `actix_web::App` and its spec
+    pub fn build_with_spec(&self) -> (actix_web::App<T, B>, &RwLock<DefaultApiRaw>) {
+        (self.inner.expect("missing app?"), self.spec.as_ref().clone())
     }
 
     /// Updates the underlying spec with definitions and operations from the given factory.
